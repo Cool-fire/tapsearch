@@ -1,0 +1,77 @@
+<html>
+    <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    </head>
+    <body>
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="/index">TapSearch</a>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/index">Home</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/search">search</a>
+      </li>
+                <li class="nav-item">
+        <a class="nav-link" href="/clear">clear</a>
+      </li>
+    </ul>
+        <form id="sform" class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" id="field" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-light my-2 my-sm-0" id="search" type="submit">Search</button>
+    </form>
+
+  </div>
+</nav>
+
+<!--    <br/>-->
+
+    <div id="render">
+
+    </div>
+
+
+    <script>
+        const $search = document.querySelector('#search');
+        const $field = document.querySelector('#field');
+        const $sform = document.querySelector('#sform');
+        const $render = document.querySelector('#render');
+
+        $sform.addEventListener('click', async e => {
+            e.preventDefault()
+            try{
+                const res = await fetch(`/api/search?word=${$field.value}`)
+                const data = await res.json()
+                console.log(data)
+                $render.innerHTML = `
+                    <div class="list-group">
+                        ${data.documents.map(doc => `<div class="list-group-item list-group-item-action">
+                        <div class="card">
+                          <div class="card-header">
+                            ${doc.id}
+                          </div>
+                          <div class="card-body">
+                            <h5 class="card-title">${doc.text}</h5>
+                            <p class="card-text">${doc.score}</p>
+                          </div>
+                        </div>
+
+
+                        </div>`).join('')}
+                    </div>
+                `
+            } catch {
+                console.log('oops!!!')
+                $render.innerHTML = `
+                    word not Found or might be a stoplist word
+                `
+            }
+
+        });
+    </script>
+
+    </body>
+</html>

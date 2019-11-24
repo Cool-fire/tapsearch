@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: ["/app/entrypoint.sh"]
+    volumes:
+      - ".:/app"
+    ports:
+      - "8000:8000"

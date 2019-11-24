@@ -6,12 +6,12 @@ import uuid
 
 SEPARATORS = (',', ':')
 
-
 def corpus():
     return input("Enter Corpus: ")
 
 
 def load_stoplist(stoplistFile='stopwords.txt'):
+    stoplistFile = os.getcwd()+'/'+stoplistFile
     with open(stoplistFile, 'r') as f:
         return {r.strip() for r in f}
 
@@ -99,5 +99,5 @@ def indexCorpus(corpus, stoplistFile='stopwords.txt'):
 
 if __name__ == '__main__':
     corpus = corpus()
-    stoplistFile = os.getcwd() + '/stopwords.txt'
+    stoplistFile = 'stopwords.txt'
     indexCorpus(corpus, stoplistFile)

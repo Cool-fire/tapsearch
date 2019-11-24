@@ -66,4 +66,5 @@ def clear():
 
 if __name__ == "__main__":
     print('test', os.getcwd())
-    app.run(debug=True)
+    app.debug = True
+    app.run(host='0.0.0.0', port=8000)

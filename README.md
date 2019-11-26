@@ -23,7 +23,7 @@ TapSearch is a search engine which index documents and searches for top 10 docum
 1) Go to the [deployed link](http://35.200.180.190/index).
 2) The [home page](http://35.200.180.190/index) is the index page which contains a textarea to type the paragraphs
 3) The [search page](http://35.200.180.190/search) contains a search box after typing the word click on submit, if there is any the top 10 documents are outputted with unique id and theire respective bm25 score.
-4) The [clear page](http://35.200.189.190/clear) has a button to clear all the documents indexed.
+4) The [clear page](http://35.200.180.190/clear) has a button to clear all the documents indexed.
 
 
 ## How to run:
